@@ -22,7 +22,7 @@ This fixture is calling Top Stories Details using Item GET call.
 def retrive_top_stories_details(top_stories_api_request):
     response = top_stories_api_request
     all_top_stories = {}
-    for item in response[:5]:
+    for item in response[:100]:
         # get call the item api and get the top news details.
         url = constants.HACKER_RANK_DOMAIN + constants.ITEM_API + str(item) +'.json'
         response = requests.get(url=url, headers=constants.HEADERS)
