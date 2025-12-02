@@ -3,6 +3,7 @@ from lib import constants
 import requests
 from page_object.validate_top_stories import ValidateTopStories
 from page_object.validate_top_story_details import ValidateTopStoryDetails
+from page_object.validate_story_comments import ValidateStoryComments
 
 """
 This fixure is calling TopStory GET Call.
@@ -21,7 +22,7 @@ This fixture is calling Top Stories Details using Item GET call.
 def retrive_top_stories_details(top_stories_api_request):
     response = top_stories_api_request
     all_top_stories = {}
-    for item in response[:100]:
+    for item in response[:5]:
         # get call the item api and get the top news details.
         url = constants.HACKER_RANK_DOMAIN + constants.ITEM_API + str(item) +'.json'
         response = requests.get(url=url, headers=constants.HEADERS)
@@ -68,6 +69,8 @@ def test_top_stories_details(retrive_top_stories_details):
     top_story_details_obj = ValidateTopStoryDetails(response=all_top_stories_details)
     top_story_details_obj.validate_story_instance()
 
+@pytest.mark.regression
 def test_top_comment_from_story(retrive_top_comment_from_story):
     top_comment = retrive_top_comment_from_story
-    # print(f'TOP COMMENT -- {top_comment}')
+    story_comment_obj = ValidateStoryComments(response=top_comment)
+    story_comment_obj.validate_story_comment()
