@@ -15,7 +15,7 @@ git clone https://github.com/umang642/hackernews-api-test.git
 
 &nbsp;
 
-##  Run Tests against Gamma Skyfire
+##  Run Tests
 1. cd to tests root
    - cd to `src/tests/`
 2. Run the following command to start the test
